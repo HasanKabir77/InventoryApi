@@ -1,8 +1,10 @@
-﻿using InventoryApi.Infrastructure.Data;
-using InventoryApi.Infrastructure.Repositories;
+﻿using InventoryApi.Application.Mappings;
+using InventoryApi.Application.Services;
 using InventoryApi.Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using InventoryApi.Infrastructure.Data;
+using InventoryApi.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -19,6 +21,12 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 
 //  Add Controllers
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
 
 // Configure JWT Authentication
 var jwt = builder.Configuration.GetSection("Jwt");
