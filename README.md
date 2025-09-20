@@ -21,7 +21,7 @@ Authentication** with JWT.
 ### 1. Clone Repository
 
 ``` bash
-git clone https://github.com/yourname/InventoryApi.git
+git clone https://github.com/HasanKabir77/InventoryApi.git
 cd InventoryApi
 ```
 
