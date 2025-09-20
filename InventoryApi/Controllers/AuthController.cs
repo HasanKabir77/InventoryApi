@@ -24,7 +24,6 @@ namespace InventoryApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
-            // check email/username uniqueness
             var existing = _uow.Users.Query().Any(u => u.Email == dto.Email || u.Username == dto.Username);
             if (existing) return Conflict(new { message = "Email or username already exists." });
 

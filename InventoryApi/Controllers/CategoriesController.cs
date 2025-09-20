@@ -19,7 +19,6 @@ namespace InventoryApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCategoryDto dto)
         {
-            // unique name check
             if (_uow.Categories.Query().Any(c => c.Name == dto.Name)) return Conflict(new { message = "Category exists" });
 
             var cat = new Category { Name = dto.Name, Description = dto.Description };
@@ -56,7 +55,6 @@ namespace InventoryApi.Controllers
             var c = await _uow.Categories.GetByIdAsync(id);
             if (c == null) return NotFound();
 
-            // unique name check (exclude current)
             if (_uow.Categories.Query().Any(x => x.Name == dto.Name && x.Id != id)) return Conflict();
 
             c.Name = dto.Name;

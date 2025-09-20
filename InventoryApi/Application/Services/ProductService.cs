@@ -20,7 +20,6 @@ namespace InventoryApi.Application.Services
 
         public async Task<ProductDto> CreateAsync(CreateProductDto dto)
         {
-            // Validate category exists
             var cat = await _uow.Categories.GetByIdAsync(dto.CategoryId);
             if (cat == null) throw new Exception("Category not found");
 
